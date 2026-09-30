@@ -1,96 +1,157 @@
-# Brick Breaker Game
+# Brick Breaker Game - Pygame
 
-This project is a terminal-based Brick Breaker (Breakout-style) clone using **Pygame**. It introduces students to interactive game design using object-oriented principles and real-time graphical rendering.
+A terminal-based Brick Breaker (Breakout-style) game developed using Python and Pygame.
 
----
-
-## What’s Provided
-
-A partially working version of a Brick Breaker game with:
-
-- A player-controlled paddle and a ball that bounces off walls, the paddle, and bricks
-- A grid of destructible bricks
-- Lives and score display
-
-You are expected to **analyze**, **interact with an AI assistant**, and **complete/fix** the game to make it fully functional.
-
-### **Use an LLM (e.g. ChatGPT or Claude) as your debugging and pair-programming partner for this lab.**
+This project was enhanced as part of the lab task by improving collision detection and adding game-end screens, replay/difficulty options, and sound feedback.
 
 ---
 
-## Getting Started
+## Project Overview
 
-### Setup
+Brick Breaker is a classic arcade-style game where the player controls a paddle to bounce a ball and destroy bricks.
 
-1. Clone the repo or download the project folder.
-2. Make sure you have Python 3.10+ installed.
-3. Install dependencies:
+The game includes:
 
-```bash
-pip install -r requirements.txt
-```
-
-4. Run the game:
-
-```bash
-python main.py
-```
-
----
-
-## Tasks to Complete
-
-Each task must be completed using an iterative process involving LLM suggestions and your critical code review.
-
-### Task 1: Refine Collision Detection
-
-> The ball always bounces vertically off the paddle and bricks, no matter which side it actually hit. Hitting a brick from the left or right should send the ball sideways, but instead it keeps moving in the same horizontal direction, which can look wrong or let it clip past a neighboring brick. Investigate and enhance collision accuracy so the bounce direction matches the side that was actually hit.
-
-### Task 2: Implement Game Over Condition
-
-> Add a screen that displays whether the player won (cleared all the bricks) or lost (ran out of lives), along with the final score, then gracefully waits for input instead of just printing to the console.
-
-### Task 3: Add Replay Option
-
-> After the end screen, allow the user to play again by choosing a difficulty (Easy, Medium, or Hard ball speed/paddle size), or exit.
-
-### Task 4: Add Sound Feedback
-
-> Add basic sound effects for a brick breaking, the ball hitting the paddle or a wall, and the game-over/win moment.
+- Player-controlled paddle
+- Bouncing ball
+- Destructible bricks
+- Score tracking
+- Lives system
+- Win condition
+- Game Over condition
+- Replay option
+- Difficulty selection
+- Sound effects
 
 ---
 
-## Expected Behavior
+## Technologies Used
 
-- Smooth paddle movement using `Left`/`Right` or `A`/`D`
-- The ball bounces off the side walls, the top wall, the paddle, and bricks
-- Hitting a brick destroys it and increases the score
-- Letting the ball fall past the paddle costs a life; losing all lives ends the game
-- Destroying every brick wins the game
+- Python 3
+- Pygame
+- Object-Oriented Programming
 
 ---
 
-## Folder Structure
+## Changes Implemented
 
-```
+The original project was modified and enhanced through four major tasks.
+
+### Task 1 - Improved Collision Detection
+
+The collision detection between the ball and bricks was improved.
+
+#### Changes Made
+
+- Added separate handling for horizontal and vertical collisions.
+- When the ball hits the **side of a brick**, the horizontal velocity (`vx`) is reversed.
+- When the ball hits the **top or bottom of a brick**, the vertical velocity (`vy`) is reversed.
+- This makes the ball movement more realistic and prevents incorrect bouncing.
+
+#### Before
+
+The ball could bounce in the wrong direction when hitting different parts of a brick.
+
+#### After
+
+The ball correctly determines whether the collision happened on the horizontal or vertical side and changes its direction accordingly.
+
+---
+
+### Task 2 - Game Over and Win Screen
+
+A proper end-game screen was added.
+
+#### Game Over
+
+When the player loses all available lives:
+
+- The game displays `GAME OVER!`
+- The final score is displayed.
+- The player can press `ENTER` to continue to the replay menu.
+- The player can press `ESC` to exit.
+
+#### Win
+
+When all bricks are destroyed:
+
+- The game displays `YOU WIN!`
+- The final score is displayed.
+- The player can press `ENTER` to continue.
+- The player can press `ESC` to exit.
+
+---
+
+### Task 3 - Replay and Difficulty Selection
+
+A replay system was added so that the player can start a new game without restarting the program.
+
+The replay menu provides three difficulty levels:
+
+| Option | Difficulty | Ball Speed | Paddle Width |
+|--------|------------|------------|--------------|
+| 1 | Easy | 3 | 120 |
+| 2 | Medium | 4 | 100 |
+| 3 | Hard | 6 | 80 |
+
+There is also an exit option.
+
+### Difficulty Behavior
+
+#### Easy
+
+- Slower ball
+- Wider paddle
+- Suitable for beginners
+
+#### Medium
+
+- Normal ball speed
+- Normal paddle width
+- Default difficulty
+
+#### Hard
+
+- Faster ball
+- Smaller paddle
+- Requires faster reactions
+
+---
+
+### Task 4 - Sound Feedback
+
+Sound effects were added to improve the game experience.
+
+The game now produces different sounds for different events:
+
+- Wall collision
+- Paddle collision
+- Brick destruction
+- Winning the game
+- Game Over
+
+The sounds are generated programmatically, so no external `.wav` or `.mp3` files are required.
+
+If the system does not support audio initialization, the game continues running without sound.
+
+---
+
+## Project Structure
+
+```text
 brick-breaker-main/
+│
 ├── main.py
 ├── requirements.txt
-├── game/
-│   ├── game_engine.py
-│   ├── paddle.py
-│   ├── ball.py
-│   └── brick.py
-└── README.md
+├── README.md
+│
+└── game/
+    ├── game_engine.py
+    ├── paddle.py
+    ├── ball.py
+    └── brick.py
 ```
+## Chatgpt Chat
 
----
-
-## Submission Checklist
-
-Submission is only the following three things:
-
-- [] A 10-second video of gameplay **before** your changes, showing the bug/broken behavior
-- [] A 10-second video of gameplay **after** your changes, showing the bug fixed and the new features working
-- [] The Chat/LLM used page link, with the complete chat history
+[View the Complete Chat](https://chatgpt.com/share/6abcee6a-ceac-83ee-9556-aa37858ba71c)
 
